@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import ProtocolContainer from "@/pages/app/protocols/components/ProtocolsContainer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 
 const protocols = [
     { id: 1, name: 'Aave', rate: '3.5%', maturity: '30 days' },
@@ -10,37 +12,45 @@ const protocols = [
 
 export default function Protocols() {
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Available Protocols</CardTitle>
-                <CardDescription>Choose a protocol to stake your tokens</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead>Protocol</TableHead>
-                            <TableHead>Rate</TableHead>
-                            <TableHead>Maturity</TableHead>
-                            <TableHead>Action</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {protocols.map((protocol) => (
-                            <TableRow key={protocol.id}>
-                                <TableCell>{protocol.name}</TableCell>
-                                <TableCell>{protocol.rate}</TableCell>
-                                <TableCell>{protocol.maturity}</TableCell>
-                                <TableCell>
-                                    <Link to={`/stake/${protocol.id}`} className="text-primary hover:underline">
-                                        Stake
-                                    </Link>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </CardContent>
-        </Card>
+        <div className="flex h-full py-10 relative flex-1 flex-col bg-aovest-bg text-white justify-start">
+            <ProtocolContainer className="flex flex-col flex-1 gap-3">
+                <div className="text-white flex justify-between">
+                    <p className="text-lg font-semibold">Mint YLD tokens to test the protocols. (For now aoYield only supports YLD)</p>
+                    <Button>Mint</Button>
+                </div>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Available Protocols</CardTitle>
+                        <CardDescription>Choose a protocol to stake your tokens</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Protocol</TableHead>
+                                    <TableHead>Rate</TableHead>
+                                    <TableHead>Maturity</TableHead>
+                                    <TableHead>Action</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {protocols.map((protocol) => (
+                                    <TableRow key={protocol.id}>
+                                        <TableCell>{protocol.name}</TableCell>
+                                        <TableCell>{protocol.rate}</TableCell>
+                                        <TableCell>{protocol.maturity}</TableCell>
+                                        <TableCell>
+                                            <Link to={`/stake/${protocol.id}`} className="text-primary hover:underline">
+                                                Stake
+                                            </Link>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
+                </Card>
+            </ProtocolContainer>
+        </div>
     )
 }

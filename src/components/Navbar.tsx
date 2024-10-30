@@ -1,4 +1,3 @@
-import SVG from "react-inlinesvg";
 import { Link, useLocation } from "react-router-dom";
 
 import ConnectBtn from "@/components/ConnectBtn";
