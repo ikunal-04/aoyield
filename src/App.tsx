@@ -6,6 +6,7 @@ import Landing from "@/pages/landing/Landing";
 // import VestPage from "@/pages/app/vest/Vest";
 import Protocols from "@/pages/app/protocols/Protocols";
 // import HistoryPage from "@/pages/app/history/History";
+import Portfolio from "@/pages/app/portfolio/Portfolio";
 import NotFound404Page from "@/pages/404/NotFound404";
 import PrivateRoute from "@/components/PrivateRoute";
 import NotFound from "@/pages/not-found/NotFound";
@@ -33,16 +34,16 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
+        <Route
           path="/app/portfolio"
           element={
             <PrivateRoute>
               <AppLayout>
-                <HistoryPage />
+                <Portfolio />
               </AppLayout>
             </PrivateRoute>
           }
-        /> */}
+        />
         <Route
           path="/404"
           element={

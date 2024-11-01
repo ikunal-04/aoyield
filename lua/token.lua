@@ -1,5 +1,5 @@
--- This is the token contract and it's tokens are used for aoyield. (for now)
-
+-- This is the token contract and it's tokens are used for aoyield. (for now)\
+-- processId: "pt0dfFDOc4eJDSdhDNsSmzjdJLq_qw5gs1uCioueGn4"
 local json = require('json')
 
 if not Balances then Balances = { [ao.id] = 10000000000 } end
@@ -36,19 +36,21 @@ end
 )
 
 Handlers.add('user-mint', Handlers.utils.hasMatchingTag('Action', 'User-Mint'), function(msg)
-    local quantity = 1000;
+    local quantity = 1000
+    -- Convert balance to number if it's a string
+    local currentBalance = tonumber(Balances[ao.id]) or 0
 
-    if Balances[ao.id] < quantity then
+    if currentBalance < quantity then
         return ao.send({
             Target = ao.id,
             Tags = {
                 Action = 'ProcessStream-Error',
-                Error = 'StreamId is required'
+                Error = 'Insufficient balance' -- Also updated error message to be more accurate
             }
         })
     end
 
-    Balances[ao.id] = Balances[ao.id] - quantity
+    Balances[ao.id] = currentBalance - quantity
     print(Balances[ao.id])
     Balances[msg.From] = (Balances[msg.From] or 0) + quantity
 
