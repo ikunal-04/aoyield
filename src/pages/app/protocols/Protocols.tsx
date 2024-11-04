@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import ProtocolContainer from "@/pages/app/protocols/components/ProtocolsContainer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { Loader } from "lucide-react";
 
 import { PROCESS_ID } from "@/helpers/constants";
 import {
@@ -29,10 +32,10 @@ const protocols = [
 
 export default function Protocols() {
     const [balance, setBalance] = useState(0);
-    const [isStaking, setIsStaking] = useState(false);
     const [isMinting, setIsMinting] = useState(false);
-    const navigate = useNavigate();
+    const [protocolList, setProtocolList] = useState([]);
     const activeAddress = useActiveAddress();
+    const [isLoading, setIsLoading] = useState(false);
 
     async function handleMint() {
         //submit the process via aoconnect
@@ -70,9 +73,39 @@ export default function Protocols() {
         setBalance(balance);
     }
 
+    async function handleProtocols() {
+        setIsLoading(true);
+        try {
+            const res = await dryrun({
+                process: PROCESS_ID,
+                data: "",
+                tags: [
+                    { name: "Action", value: "GetProtocols" },
+                ],
+            }); 
+            
+            const protocols = res.Messages[0]?.Tags.find(
+                (tag: any) => tag.name === "Protocols"
+            )?.value;
+    
+            if (protocols) {
+                const parsedProtocols = JSON.parse(protocols);
+                setProtocolList(parsedProtocols);
+            } else {
+                console.error("No protocols found in response");
+            }
+        } catch (error) {
+            console.error("Error fetching protocols:", error);
+            toast.error("Failed to load protocols");
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     useEffect(() => {
         handleBalance();
-    });
+        handleProtocols();
+    }, []);
 
     return (
         <div className="flex h-full py-10 relative flex-1 flex-col bg-aovest-bg text-white justify-start">
@@ -80,9 +113,13 @@ export default function Protocols() {
                 <div className="text-white flex justify-between items-center py-4 border-b border-violet-700/30">
                     <p className="text-lg font-semibold">Mint YLD tokens to test the protocols. (For now aoYield only supports YLD)</p>
                     <div className="flex items-center gap-6">
-                        <div className="flex items-center bg-violet-800/50 backdrop-blur-sm rounded-lg">
+                        <div className="flex items-center backdrop-blur-sm rounded-lg">
                             <span className="text-gray-200 mr-2">Balance:</span>
-                            <span className="font-semibold">{balance} YLD</span>
+                            {isLoading ? (
+                                <Loader className="animate-spin" />
+                            ) : (
+                                <span className="font-semibold">{balance} YLD</span>
+                            )}
                         </div>
                         <Button
                             onClick={handleMint}
@@ -104,24 +141,40 @@ export default function Protocols() {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>Protocol</TableHead>
-                                    <TableHead>Rate</TableHead>
+                                    <TableHead>Yield Rate</TableHead>
+                                    <TableHead>TVL</TableHead>
+                                    <TableHead>Liquidity</TableHead>
+                                    <TableHead>Users</TableHead>
                                     <TableHead>Maturity</TableHead>
                                     <TableHead>Action</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {protocols.map((protocol) => (
-                                    <TableRow key={protocol.id}>
-                                        <TableCell>{protocol.name}</TableCell>
-                                        <TableCell>{protocol.rate}</TableCell>
-                                        <TableCell>{protocol.maturity}</TableCell>
+                                {isLoading ? (
+                                    <TableRow>
+                                        <TableCell colSpan={7} className="h-32">
+                                            <div className="w-full h-full flex items-center justify-center">
+                                                <Loader className="animate-spin w-6 h-6" />
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ) : (
+                                    protocolList.map((protocol: any) => (
+                                        <TableRow key={protocol.id}>
+                                        <TableCell><img src={protocol.logo} alt="" /> {protocol.name}</TableCell>
+                                        <TableCell>{protocol.yieldRate} %</TableCell>
+                                        <TableCell>$ {protocol.tvl}</TableCell>
+                                        <TableCell>$ {protocol.liquidity}</TableCell>
+                                        <TableCell>{protocol.usersCount}</TableCell>
+                                        <TableCell>{protocol.maturityDate}</TableCell>
                                         <TableCell>
                                             <Link to={`/stake/${protocol.id}`} className="text-primary hover:underline">
                                                 Stake
                                             </Link>
                                         </TableCell>
-                                    </TableRow>
-                                ))}
+                                        </TableRow>
+                                    ))
+                                )}
                             </TableBody>
                         </Table>
                     </CardContent>

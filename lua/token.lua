@@ -45,7 +45,7 @@ Handlers.add('user-mint', Handlers.utils.hasMatchingTag('Action', 'User-Mint'), 
             Target = ao.id,
             Tags = {
                 Action = 'ProcessStream-Error',
-                Error = 'Insufficient balance' -- Also updated error message to be more accurate
+                Error = 'Insufficient balance' 
             }
         })
     end
