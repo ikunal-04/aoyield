@@ -1,8 +1,26 @@
-# aoYield 🌱
+# aoYield
 
 A decentralized yield farming platform built on the AO Protocol, enabling users to stake tokens and earn yields through various protocols.
 
-## Features ✨
+## Future Scope
+### Technical Enhancements
+- Integration with multiple token standards
+- Cross-chain bridging capabilities (partnership capabilities with Astro)
+- Layer 2 scaling solutions
+
+### Platform Features
+- Dynamic yield rates based on market conditions
+- Multi-token protocol support (Can be implemented in future scope)
+- Protocol governance mechanisms
+- Variable staking periods
+- Early withdrawal options
+- Compound yield optimization
+
+### Ecosystem Growth
+- Integration with Liquid Ops for yield optimization
+- Partnerships with major DeFi protocols
+
+## Features
 
 - **Token Management**
   - Mint YLD tokens for testing
