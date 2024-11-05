@@ -30,6 +30,9 @@ export default function Navbar() {
         <Link to="/app/portfolio" className=" text-lg text-white font-medium">
           Portfolio
         </Link>
+        <Link to="/docs" className="text-lg text-white font-medium">
+          Docs
+        </Link>
       </div>
       <div>
         <ConnectBtn />

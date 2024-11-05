@@ -24,7 +24,7 @@ export default function PrivateRoute({ children }: Props) {
     return (
       <>
         <div className="w-screen min-h-screen flex items-center justify-center">
-          <div className="flex absolute z-50 bg-aovest-bg bg-opacity-90 h-full flex-col items-center justify-center w-full">
+          <div className="flex absolute z-50 bg-opacity-90 h-full flex-col items-center justify-center w-full">
             <FadeLoader color="#6671F3" loading={true} />
           </div>
           <>{children}</>

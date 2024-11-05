@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 type Props = {
     children: React.ReactNode
@@ -9,6 +10,7 @@ const AppLayout = ({ children }: Props) => {
         <div className="flex w-full flex-col min-h-screen bg-gradient-to-b from-violet-950 via-violet-600 to-current">
             <Navbar />
             {children}
+            <Footer />
         </div>
     )
 }

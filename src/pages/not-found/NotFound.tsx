@@ -26,7 +26,7 @@ const NotFound = () => {
           <div className="mt-5">
             <button
               onClick={handleExploreClick}
-              className="bg-aovest-primary text-white border-[0.5px] border-aovest-neutralTwo rounded-[64px] px-8 py-3 text-base flex items-center gap-2"
+              className="text-white border-[0.5px] border-aovest-neutralTwo rounded-[64px] px-8 py-3 text-base flex items-center gap-2"
             >
               {connected ? "Continue" : "Connect Wallet"}
             </button>

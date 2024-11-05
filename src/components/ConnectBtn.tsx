@@ -20,7 +20,7 @@ export default function ConnectBtn() {
   return (
     <div>
       <button
-        className={`w-[238px] border-[1.5px] border-aovest-primary rounded-[64px] justify-between inline-flex items-center px-4 h-[45px] ${"bg-aovest-bg"} tracking-wide text-primary-700  font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+        className={`w-[238px] border-[1.5px] border-aovest-primary rounded-[64px] justify-between inline-flex items-center px-4 h-[45px] tracking-wide text-primary-700  font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
       >
         <div className="flex gap-1 items-center">
           <FaUser className="h-4 w-4 text-aovest-primary" />

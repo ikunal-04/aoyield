@@ -3,13 +3,12 @@ import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import AppLayout from "@/layouts/AppLayout";
 import Landing from "@/pages/landing/Landing";
-// import VestPage from "@/pages/app/vest/Vest";
 import Protocols from "@/pages/app/protocols/Protocols";
-// import HistoryPage from "@/pages/app/history/History";
 import Portfolio from "@/pages/app/portfolio/Portfolio";
 import NotFound404Page from "@/pages/404/NotFound404";
 import PrivateRoute from "@/components/PrivateRoute";
 import NotFound from "@/pages/not-found/NotFound";
+import Docs from "@/pages/app/docs/Docs";
 
 function App() {
   return (
@@ -42,6 +41,14 @@ function App() {
                 <Portfolio />
               </AppLayout>
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="/docs"
+          element={
+            <AppLayout>
+              <Docs />
+            </AppLayout>
           }
         />
         <Route
