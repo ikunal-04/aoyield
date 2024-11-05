@@ -17,12 +17,6 @@ aoYield is a decentralized yield farming platform built on the AO Protocol. It e
 
 #### Adding Protocols
 
-```typescript
-async function handleAddProtocol(data: ProtocolData) {
-// Protocol addition logic
-}
-```
-
 - **Functionality**: 
   - Creates new yield-generating protocols
   - Sets yield rates and maturity dates
@@ -34,12 +28,6 @@ async function handleAddProtocol(data: ProtocolData) {
   - Protocol governance mechanisms
 
 #### Protocol Listing
-
-```typescript
-async function handleProtocols() {
-// Protocol fetching logic
-}
-```
 
 - **Features**:
   - Real-time TVL tracking
@@ -53,12 +41,6 @@ async function handleProtocols() {
 ### Staking Mechanism
 
 #### Stake Processing
-
-```typescript
-async function handleStake(amount: number, protocol: Protocol) {
-// Staking logic
-}
-```
 
 - **Features**:
   - Token locking mechanism
@@ -75,123 +57,32 @@ async function handleStake(amount: number, protocol: Protocol) {
 - Built on AO Protocol
 - Utilizes permaweb for data persistence
 - Future integrations with:
-  - Cross-chain bridges
+-   Liquid Ops can be one of the major partner of ours
+  - Cross-chain bridges (Astro in our case)
   - Layer 2 solutions
-  - Oracle networks
+  - Oracle networks 
 
 ### Security Features
 - Access control mechanisms
 - Transaction validation
 - Rate limiting
 - Future enhancements:
+  - All other ao tokens support  
   - Multi-sig requirements
-  - Automated auditing
   - Insurance protocols
 
 ## Use Cases
 
 ### DeFi Integration
-1. **Yield Aggregation**
+1. **Liquid Ops**
    - Combine yields from multiple protocols
    - Optimize returns through smart routing
    - Risk-adjusted yield strategies
 
-2. **Liquidity Provision**
+2. **Astro**
    - Automated market making
    - Liquidity mining programs
    - Incentive distribution
-
-### Enterprise Solutions
-1. **Treasury Management**
-   - Corporate yield farming
-   - Risk-managed staking
-   - Portfolio diversification
-
-2. **Investment Products**
-   - Structured yield products
-   - Fixed-term deposits
-   - Yield-bearing certificates
-
-## Development Roadmap
-
-### Phase 1: Foundation (Current)
-- Basic staking functionality
-- Protocol management
-- Yield tracking
-
-### Phase 2: Enhancement
-- Multiple token support
-- Advanced yield strategies
-- Governance implementation
-
-### Phase 3: Expansion
-- Cross-chain integration
-- Institutional features
-- Advanced analytics
-
-## API Reference
-
-### Protocol Management
-
-```typescript
-interface Protocol {
-id: string;
-name: string;
-yieldRate: number;
-tvl: number;
-liquidity: number;
-usersCount: number;
-maturityDate: number;
-}
-interface StakeOperation {
-protocolId: string;
-amount: number;
-timestamp: number;
-yield: number;
-}
-```
-
-### User Operations
-
-```typescript
-interface UserBalance {
-available: number;
-staked: number;
-pendingYield: number;
-}
-interface UserStake {
-protocol: Protocol;
-amount: number;
-startDate: number;
-maturityDate: number;
-currentYield: number;
-}
-```
-
-
-## Best Practices
-
-### For Users
-1. **Risk Management**
-   - Diversify across protocols
-   - Monitor maturity dates
-   - Understand yield calculations
-
-2. **Optimal Staking**
-   - Time market conditions
-   - Consider lock-up periods
-   - Track gas costs
-
-### For Developers
-1. **Integration Guidelines**
-   - API usage patterns
-   - Error handling
-   - Rate limiting
-
-2. **Security Considerations**
-   - Input validation
-   - Transaction signing
-   - State management
 
 ## Future Innovations
 
