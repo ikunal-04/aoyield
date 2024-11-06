@@ -1,5 +1,7 @@
 # aoYield
 
+Permaweb deployed link of [aoYield](https://4vfpnvfbz3nefi36iarr2p7lzpscerreguapxhpxgc2cb5ci2gfa.arweave.net/5Ur21KHO2kKjfkAjHT_ry-QiRiQ1APud9zC0IPRI0Yo/)
+
 A decentralized yield farming platform built on the AO Protocol, enabling users to stake tokens and earn yields through various protocols.
 
 ## Future Scope
